@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+/*body{ 
+
+}*/
+
+header{
+    width: 100%;
+    height: 90px;  /* Podemos cambiar el alto luego*/
+    background-color: #ffffff;
+}
+
+main{
+    height: 588px;
+}
+
+.interior{
+    max-width: 100%;
+    padding: 0 10px;
+    margin: auto;
+}
+
+/*.logo{  
+
+}*/ /*Estilizar la caja de logo*/
+
+/*.logo img{  
+
+}*/  /*Estilizar la caja de la imagen*/
+
+.logo img:hover{  
+    transform: scale(1.1);
+}
+
+.navegacion{  /*Estilizar el nav bar*/
+    float: right;
+    display: flex;
+    align-items: center;
+    min-height: 90px;
+    z-index: 1000;   
+}
+
+.navegacion ul{ /*Estilizar el undordered list dentro del nav bar*/
+    list-style: none;
+    padding: 0 10px;
+}
+
+.navegacion ul li{ /*Estilizar los item dentro de undorered del nav bar*/
+    display: inline-block;
+    position: relative;
+    transition: .3s linear;
+    z-index: 1000;
+}
+
+.navegacion ul li:hover{
+    color: #8873ef;
+    transform: scale(1.1);
+    
+}
+
+.navegacion-color{
+    color: black;
+}
+
+.navegacion ul li a{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 20px;
+    transition: .3s linear;
+}
+
+
+/*Confugración de grillas*/
+
+.contenedor{
+    background-color: #ffffff;
+    border: 0px solid #ffffff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*Cuantas columnas va tener y el ancho las grillas*/ 
+    grid-template-rows:  auto; /*Cambia el ancho de la fila*/
+    grid-auto-flow: column; /* nos ayuda a saber como se esta llenando nuestra grilla*/
+    column-gap: 0; /*Tamaño de la brecha que queremos tener puede ser colum gap o rowgap*/
+    height: 622px; /* Alto de la grilla padre*/
+}
+
+.item{ /*Elemento dentro de la grilllas*/
+    border: 0px solid #8873ef;
+    font-size: 4rem;
+}
+
+.item h1{
+    margin-left: 19px;
+    margin-top: 110px;
+}
+
+.item h6{
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 36px;
+}
+
+.item p{
+    margin-left: 20px;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.button-style{
+    display: inline-block;
+    border: 0px;
+    border-radius: 8px;
+    vertical-align: middle;
+    background-color: #8873ef;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    margin-left: 20px;
+    height: 40px;
+    width: 150px;
+}
+
+.Social{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    
+}
+
+.Social figure{
+    width: 50px;
+    height: 50px;
+}
+
+.Social figure img{
+    width: 38px;
+    height: 38px;
+    justify-items: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+/*.item button img{
+    height: 15px;
+    width: 15px;
+    margin-left: 15px;
+} */ /*Se supone que este es el estilo de la imagen del boton pero aun no doy con el chiste*/
+
+.item img{
+    margin-left: 80px;
+    height: 600px;
+    width: 600px;
+}
+
+.contenedor-2{
+    background-color: #EAEBFF;
+    border: 0px solid #8873ef;
+    display: flex;
+    flex-wrap: wrap;
+    height: 700px; /* Alto de la grilla padre*/
+}
+
+.item-aboutme{
+    width: 512px;
+    margin-left: 20px;
+
+}
+
+.item-aboutme h1{
+    font-size: 36px;
+    margin-top: 100px;
+}
+
+.item-aboutme-2{
+    width: 512px;
+    margin-left: 200px;
+    margin-top: 110px;
+    align-self: center;
+    justify-items: center;
+}
+
+.item-aboutme-2 p{
+    font-size: 20px;
+    margin-bottom: 50px;
+    align-self: left;
+}
+
+.item-aboutme-2 h2{
+    font-size: 32px;
+    margin-top: 25px;
+    margin-left: 150px;
+}
+
+.interest{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+}
+
+.interest figure{
+    width: 50px;
+    height: 50px;
+    margin-right: 40px;
+}
+
+.interest figure img{
+    width: 45px;
+    height: 45px;
+    justify-items: center;
+    margin-left: 90px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
