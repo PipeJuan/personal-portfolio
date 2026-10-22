@@ -10,9 +10,9 @@ Origen: onboarding del `frontend-tutor`. Ejecuta: `frontend-coder` (solo cuando 
 
 ## Fase 0 — Base del proyecto (30 min)
 
-- [ ] **0.1** Decidir la rama de publicación: existe `main` y `origin/master`. *Aprendes:* ramas locales vs remotas.
-- [ ] **0.2** Crear `.gitignore` y un README real (qué es, cómo correrlo). *Aprendes:* qué va y qué no va en un repo.
-- [ ] **0.3** Renombrar archivos de `pics/` sin espacios ni nombres de Figma y `Css/` → `css/`, actualizando las rutas. *Aprendes:* por qué GitHub Pages (Linux) distingue mayúsculas y rompe rutas. *Ojo:* el coder renombra con `git mv` y ajusta todas las rutas; no borra archivos.
+- [x] **0.1** Decidir la rama de publicación: existe `main` y `origin/master`. *Aprendes:* ramas locales vs remotas. **Decisión: `main`.** Es la rama por defecto del remoto (`origin/HEAD -> origin/main`) y contiene todo lo de `origin/master` (0 commits de diferencia hacia ese lado). `origin/master` es una rama vieja sin trabajo propio; queda pendiente borrarla en GitHub (lo decide el usuario).
+- [x] **0.2** Crear `.gitignore` y un README real (qué es, cómo correrlo). *Aprendes:* qué va y qué no va en un repo.
+- [x] **0.3** Renombrar archivos de `pics/` sin espacios ni nombres de Figma y `Css/` → `css/`, actualizando las rutas. *Aprendes:* por qué GitHub Pages (Linux) distingue mayúsculas y rompe rutas. *Ojo:* el coder renombra con `git mv` y ajusta todas las rutas; no borra archivos.
 
 ## Fase 1 — Menú y enlaces (lo más pequeño, mucho aprendizaje)
 

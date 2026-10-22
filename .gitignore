@@ -1,0 +1,23 @@
+# Basura del sistema operativo
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editor (no hay configuración compartida en .vscode/ hoy; si algún día la hay, quita esta línea)
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencias y tooling (por si se agrega JS más adelante)
+node_modules/
+
+# Variables de entorno y secretos
+.env
+.env.*
