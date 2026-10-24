@@ -12,20 +12,21 @@
     <body>
         <header> <!--Header del protafolio-->
             <div class="interior">  <!--Contenedor para meter el logo y el navegacion bar-->
-                <a href="" class="logo"><img src="" alt=""></a>  <!-- Logo de la pagina web-->
+                <!-- TODO: el usuario confirma el nombre que quiere mostrar -->
+                <a href="#inicio" class="logo">Felipe Ortega</a>  <!-- Logo de la pagina web-->
                 <nav class="navegacion"> <!-- Navegacion var de la pagina web-->
                     <ul> <!--Lista desordenada de elementos del menis-->
-                        <li class="navegacion-color"><a href=""></a>Home</li>
-                        <li class="navegacion-color"><a href=""></a>Sobre mí</li>
-                        <li class="navegacion-color"><a href=""></a>Skills</li>
-                        <li class="navegacion-color"><a href=""></a>Experiencia</li>
-                        <li class="navegacion-color"><a href=""></a>Referencias</li>
+                        <li class="navegacion-color"><a href="#inicio">Home</a></li>
+                        <li class="navegacion-color"><a href="#sobre-mi">Sobre mí</a></li>
+                        <li class="navegacion-color"><a href="#skills">Skills</a></li>
+                        <li class="navegacion-color"><a href="#experiencia">Experiencia</a></li>
+                        <li class="navegacion-color"><a href="#referencias">Referencias</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <main>
-            <section> <!--Section del home-->  
+            <section id="inicio"> <!--Section del home-->  
                 <div class="contenedor"> <!--Este va ser el padre de nuestra grilla-->
                     <div class="item"> <!--Item 1 a la izqu-->
 
@@ -35,19 +36,19 @@
                             lenguajes de programación.</p>
 
                         <div> <!--Contenedor de boton-->
-                            <button class="button-style">¡Hablemos!
-                            </button>
+                            <a class="button-style" href="https://www.linkedin.com/in/felipe-juan-ortega-de-la-cruz-982352184/" target="_blank" rel="noopener noreferrer">¡Hablemos!</a>
                         </div>
 
                         <div class="Social"> <!--Contenedor de botones  de redes sociales-->
                             <figure>
-                                <img src="./pics/social-instagram.png" alt="Foto de redes sociales ig">
+                                <a href="https://github.com/PipeJuan" aria-label="GitHub de Felipe" target="_blank" rel="noopener noreferrer">
+                                    <img src="./pics/social-github.png" alt="">
+                                </a>
                             </figure>
                             <figure>
-                                <img src="./pics/social-github.png" alt="Foto de redes sociales Github">
-                            </figure>
-                            <figure>
-                                <img src="./pics/social-linkedin.png" alt="Foto de redes sociales Linkedin">
+                                <a href="https://www.linkedin.com/in/felipe-juan-ortega-de-la-cruz-982352184/" aria-label="LinkedIn de Felipe" target="_blank" rel="noopener noreferrer">
+                                    <img src="./pics/social-linkedin.png" alt="">
+                                </a>
                             </figure>
                         </div>
                     </div>  <!--Grid item o elementos-->
@@ -61,7 +62,7 @@
                 </div>
             </section>
 
-            <section class="contenedor-2"> <!--Section del about me-->
+            <section id="sobre-mi" class="contenedor-2"> <!--Section del about me-->
 
                 <div class="item-aboutme">
                     
@@ -96,7 +97,7 @@
                 </div>
             </section>
 
-            <section> <!--Section de Skill-->
+            <section id="skills"> <!--Section de Skill-->
                 <div> <!-- Parte izquierda-->
 
                     <h1>Educación y habilidades</h1>
@@ -147,11 +148,11 @@
 
             </section>
 
-            <section> <!--Section de experiencias-->
+            <section id="experiencia"> <!--Section de experiencias-->
 
             </section>
 
-            <section> <!--Section de testimonial-->
+            <section id="referencias"> <!--Section de testimonial-->
 
             </section>
 

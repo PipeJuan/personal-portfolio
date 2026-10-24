@@ -16,10 +16,10 @@ Origen: onboarding del `frontend-tutor`. Ejecuta: `frontend-coder` (solo cuando 
 
 ## Fase 1 — Menú y enlaces (lo más pequeño, mucho aprendizaje)
 
-- [ ] **1.1** Poner `id` a cada `<section>` y arreglar los `<li>`: `<li><a href="#sobre-mi">Sobre mí</a></li>`. *Aprendes:* anclas, por qué `href=""` recarga la página, enlace vacío vs enlace con texto.
-- [ ] **1.2** Pasar el estilo hover de `li` a `a` y añadir `scroll-behavior: smooth` y `:focus-visible`. *Aprendes:* selectores, pseudo-clases, navegación por teclado.
-- [ ] **1.3** Hacer reales el botón "¡Hablemos!" (`mailto:` o LinkedIn) y envolver los íconos sociales en `<a>` con `aria-label`. Los enlaces reales los pone el usuario; el coder deja `TODO`. *Aprendes:* `<a>` vs `<button>`, `target="_blank"` con `rel="noopener noreferrer"`.
-- [ ] **1.4** Arreglar el logo (`src=""` / `href=""`): imagen real o texto. *Aprendes:* peticiones inútiles del navegador y `alt` correcto.
+- [x] **1.1** Poner `id` a cada `<section>` y arreglar los `<li>`: `<li><a href="#sobre-mi">Sobre mí</a></li>`. *Aprendes:* anclas, por qué `href=""` recarga la página, enlace vacío vs enlace con texto.
+- [x] **1.2** Pasar el estilo hover de `li` a `a` y añadir `scroll-behavior: smooth` y `:focus-visible`. *Aprendes:* selectores, pseudo-clases, navegación por teclado.
+- [x] **1.3** Hacer reales el botón "¡Hablemos!" (enlace a LinkedIn) y envolver los íconos sociales en `<a>` con `aria-label`. *Aprendes:* `<a>` vs `<button>`, `target="_blank"` con `rel="noopener noreferrer"`.
+- [x] **1.4** Arreglar el logo (`src=""` / `href=""`): imagen real o texto. *Aprendes:* peticiones inútiles del navegador y `alt` correcto.
 
 ## Fase 2 — Semántica, accesibilidad y contenido
 
