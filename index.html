@@ -1,45 +1,67 @@
     <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Este es el website de mi portafolio profesional">
+    <title>Felipe Ortega | Growth & CRM Analyst · AI Engineer en formación</title>
+    <meta name="description" content="Portafolio de Felipe Ortega, Senior Growth Analyst CRM en Rappi: growth, datos y CRM, y aprendiendo a construir productos con AI.">
     <meta name="robots" content="index, follow">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./pics/pic-profile.png">
+    <!-- Open Graph: vista previa al compartir el enlace -->
+    <meta property="og:title" content="Felipe Ortega | Growth & CRM Analyst · AI Engineer en formación">
+    <meta property="og:description" content="Portafolio de Felipe Ortega, Senior Growth Analyst CRM en Rappi: growth, datos y CRM, y aprendiendo a construir productos con AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <!-- TODO (paso 6.3): og:image debe ser URL absoluta pública; agregar también og:url -->
+    <meta property="og:image" content="./pics/pic-profile.png">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <!-- Marca "hay JS" antes del primer pintado: el CSS del menú colapsado solo aplica bajo .js,
+         así sin JS el menú queda visible. Va inline (no en main.js) para evitar un parpadeo. -->
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Felipe Ortega</title>
+    <script src="./js/main.js" defer></script>
 </head>
     <body>
-        <header> <!--Header del protafolio-->
-            <div class="interior">  <!--Contenedor para meter el logo y el navegacion bar-->
+        <header> <!--Header del portafolio-->
+            <div class="cabecera-interior">  <!--Contenedor para meter el logo y la barra de navegación-->
                 <!-- TODO: el usuario confirma el nombre que quiere mostrar -->
-                <a href="#inicio" class="logo">Felipe Ortega</a>  <!-- Logo de la pagina web-->
-                <nav class="navegacion"> <!-- Navegacion var de la pagina web-->
-                    <ul> <!--Lista desordenada de elementos del menis-->
-                        <li class="navegacion-color"><a href="#inicio">Home</a></li>
-                        <li class="navegacion-color"><a href="#sobre-mi">Sobre mí</a></li>
-                        <li class="navegacion-color"><a href="#skills">Skills</a></li>
-                        <li class="navegacion-color"><a href="#experiencia">Experiencia</a></li>
-                        <li class="navegacion-color"><a href="#referencias">Referencias</a></li>
+                <a href="#inicio" class="logo">Felipe Ortega</a>  <!-- Logo de la página web-->
+                <!-- Botón hamburguesa: solo se muestra en móvil y con JS (ver css). aria-controls apunta al id del nav -->
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false">
+                        <path class="icono-abrir" d="M4 7h16M4 12h16M4 17h16"/>
+                        <path class="icono-cerrar" d="M6 6l12 12M18 6L6 18"/>
+                    </svg>
+                </button>
+                <nav class="navegacion" id="menu-principal"> <!-- Barra de navegación de la página web-->
+                    <ul> <!--Lista desordenada de elementos del menú-->
+                        <li><a href="#inicio">Home</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experiencia">Experiencia</a></li>
+                        <li><a href="#referencias">Referencias</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <main>
-            <section id="inicio"> <!--Section del home-->  
-                <div class="contenedor"> <!--Este va ser el padre de nuestra grilla-->
-                    <div class="item"> <!--Item 1 a la izqu-->
+            <section id="inicio"> <!--Section del home-->
+                <div class="hero-grid"> <!--Este va a ser el padre de nuestra grilla-->
+                    <div class="hero-texto"> <!--Item 1 a la izquierda-->
 
                         <h1>Felipe Ortega</h1>
-                        <h6>Business Administrator & Programmer</h6>
-                        <p>Apasionado por el deporte, las startups, las finanzas y los diversos
-                            lenguajes de programación.</p>
+                        <p class="subtitulo">Growth & CRM Analyst | AI Engineer en formación</p>
+                        <p>Senior Growth Analyst CRM en Rappi. Trabajo con growth, CRM y datos,
+                            y estoy aprendiendo a construir productos y soluciones con AI.</p>
 
                         <div> <!--Contenedor de boton-->
-                            <a class="button-style" href="https://www.linkedin.com/in/felipe-juan-ortega-de-la-cruz-982352184/" target="_blank" rel="noopener noreferrer">¡Hablemos!</a>
+                            <a class="boton boton-primario" href="https://www.linkedin.com/in/felipe-juan-ortega-de-la-cruz-982352184/" target="_blank" rel="noopener noreferrer">¡Hablemos!</a>
                         </div>
 
-                        <div class="Social"> <!--Contenedor de botones  de redes sociales-->
+                        <div class="redes-sociales"> <!--Contenedor de botones  de redes sociales-->
                             <figure>
                                 <a href="https://github.com/PipeJuan" aria-label="GitHub de Felipe" target="_blank" rel="noopener noreferrer">
                                     <img src="./pics/social-github.png" alt="">
@@ -53,111 +75,209 @@
                         </div>
                     </div>  <!--Grid item o elementos-->
 
-                    <div class="item"> <!--Item a la derecha donde esta la fotografia-->
+                    <div class="hero-imagen"> <!--Item a la derecha donde está la fotografía-->
                         <figure>
-                            <img src="./pics/pic-profile.png" alt="Foto de perfil felipe ortega">
+                            <img src="./pics/pic-profile.jpg" alt="Felipe Ortega sentado en un sofá frente al letrero de neón de Rappi" width="960" height="1280">
                         </figure>
-                    </div> <!--Aqui puede ir un img por que es un elemento dentro de la grilla-->
-                    
+                    </div> <!--Aquí puede ir un img porque es un elemento dentro de la grilla-->
+
                 </div>
             </section>
 
-            <section id="sobre-mi" class="contenedor-2"> <!--Section del about me-->
+            <section id="sobre-mi" class="sobre-mi"> <!--Section del about me-->
 
-                <div class="item-aboutme">
-                    
-                    <h1>Sobre mí</h1>
+                <div class="sobre-mi-titulo">
+
+                    <h2>Sobre mí</h2>
 
                     <figure>
-                        <img src="./pics/about-computer.png" alt="pc">
+                        <img src="./pics/about-computer.png" alt="Ilustración de un monitor con una interfaz web">
                     </figure>
                 </div>
-                <div class="item-aboutme-2">
+                <div class="sobre-mi-texto">
 
-                    <p>Soy un joven creyente en el desarrollo personal. Una persona organizada, paciente con buenas relaciones interpersonales con suscompañeros de trabajo. Poseeo buenas habilidades en la toma de decisiones, el analisis y manejo del tiempo, ademas de buena capacidad para la investigación, liderazgo y manejo de equipos.
+                    <p>Creo en el desarrollo personal. Soy organizado, comprometido, responsable y detallista, con buen análisis de datos, manejo del tiempo y atención al detalle, además de capacidad de investigación y trabajo en equipo. Tengo experiencia en tecnología y startups, y me interesan el growth marketing, el CRM B2C, la ciencia de datos y el crecimiento de marcas y productos, siempre buscando generar impacto en consumidores y aliados. Actualmente estoy aprendiendo a construir con AI.
                     </p>
-                    
-                    <h2>
-                        Mis intereses
-                    </h2>
-                    <div class="interest">
+
+                    <h3 class="eyebrow">Mis intereses</h3>
+                    <div class="intereses">
                         <figure>
-                            <img src="./pics/gym.png" alt="Foto de gym">
+                            <img src="./pics/gym.png" alt="Gimnasio">
                         </figure>
                         <figure>
-                            <img src="./pics/gamepad.png" alt="Foto de control de mando">
+                            <img src="./pics/gamepad.png" alt="Videojuegos">
                         </figure>
                         <figure>
-                            <img src="./pics/hamburger.png" alt="Foto de hamburgues">
+                            <img src="./pics/hamburger.png" alt="Hamburguesas">
                         </figure>
                         <figure>
-                            <img src="./pics/plane.png" alt="Foto de avión">
+                            <img src="./pics/plane.png" alt="Viajes">
                         </figure>
                     </div>
+                    <!-- Se rellena desde js/main.js (datos: INTERESES) -->
+                    <ul class="pildoras pildoras-sm" id="lista-intereses" aria-label="Lista de intereses"></ul>
+                    <noscript><p>Activa JavaScript para ver la lista de intereses.</p></noscript>
                 </div>
             </section>
 
             <section id="skills"> <!--Section de Skill-->
-                <div> <!-- Parte izquierda-->
+                <h2>Educación y habilidades</h2>
 
-                    <h1>Educación y habilidades</h1>
-
-                    <p>Universidad del Norte</p>
-                    <p>2016 - 2021</p>
-
-                    <p>Graduado de la escuela de negocios de la Universidad del Norte con
-                        un promedio acumulado de 4,33 y un puntaje de 191/300 en las
-                        Pruebas Saber Pro. En mi etapa de estudios adquirí conocimientos
-                        sobre logistica, finanzas, gestión del talento humano y gerencial.</p>
-
-
-                    
-                    <p>Colegio Madre Marcelina</p>
-                    <p>2008 - 2015</p>
-
-                    <p>Graduado del Colegio Madre Marcelina en Soledad/Atlantico con
-                        un puntaje de 334/500 en las Pruebas Icfes 2015.</p>
-                    
-                     <div> <!--Contendor de iconos de las skills-->
-                        <figure>
-                            <img src="./pics/git-badge.png" alt="">
-                        </figure>
-                        <figure>
-                            <img src="./" alt="">
-                        </figure>
-                        <figure>
-                            <img src="./" alt="">
-                        </figure>
-                        <figure>
-                            <img src="./" alt="">
-                        </figure>
-                        <figure>
-                            <img src="./" alt="">
-                        </figure>
-                        <figure>
-                            <img src="./" alt="">
-                        </figure>
-                     </div>   
+                <div class="bloque"> <!--Educación: tarjetas en rejilla auto-fit-->
+                    <h3 class="eyebrow">Educación</h3>
+                    <div class="rejilla-tarjetas">
+                        <article class="card-content">
+                            <h4 class="tarjeta-titulo">Universidad del Norte</h4>
+                            <p class="meta">2016 - 2020</p>
+                            <p>Business Administrator con concentración en Finanzas Internacionales,
+                                Barranquilla, Colombia. Promedio acumulado de 4,33 y puntaje de 191/300
+                                en las Pruebas Saber Pro, miembro de los "Mejores Saber Pro 2020".</p>
+                        </article>
+                        <article class="card-content">
+                            <h4 class="tarjeta-titulo">Colegio Madre Marcelina</h4>
+                            <p class="meta">2009 - 2015</p>
+                            <p>Soledad/Atlántico. Puntaje de 334/500 en las Pruebas Icfes 2015.</p>
+                        </article>
+                    </div>
                 </div>
 
-                <div> <!--Pare derecha-->
-                    <figure>
-                        <img src="./" alt="Imagen">
-                    </figure>
+                <div class="bloque"> <!--Habilidades como píldoras de texto (no hay logos)-->
+                    <h3 class="eyebrow">Habilidades</h3>
+                    <!-- Se rellena desde js/main.js (datos: HABILIDADES) -->
+                    <ul class="pildoras" id="lista-habilidades" aria-label="Herramientas y habilidades"></ul>
+                    <noscript><p>Activa JavaScript para ver las habilidades.</p></noscript>
+                </div>
+
+                <div class="bloque">
+                    <h3 class="eyebrow">Idioma</h3>
+                    <!-- Se rellena desde js/main.js (datos: IDIOMAS) -->
+                    <ul class="pildoras" id="lista-idiomas" aria-label="Idiomas"></ul>
+                    <noscript><p>Activa JavaScript para ver los idiomas.</p></noscript>
+                </div>
+
+                <div class="bloque"> <!--Cursos y certificaciones: listas compactas-->
+                    <h3 class="eyebrow">Cursos y certificaciones</h3>
+                    <!-- Se rellena desde js/main.js (datos: CURSOS) -->
+                    <div class="rejilla-tarjetas" id="lista-cursos"></div>
+                    <noscript><p>Activa JavaScript para ver los cursos y certificaciones.</p></noscript>
                 </div>
 
             </section>
 
             <section id="experiencia"> <!--Section de experiencias-->
+                <p class="eyebrow">Experiencia</p>
+                <h2>Experiencia</h2>
 
+                <div class="lista-tarjetas">
+                    <article class="card-content experiencia">
+                        <div class="experiencia-cabecera">
+                            <!-- TODO: Rappi general no tiene logo en pics/; agregar imagen cuando exista el archivo -->
+                            <div>
+                                <h3 class="tarjeta-titulo">Senior Growth Analyst CRM – SSL</h3>
+                                <p>Rappi</p>
+                                <p class="meta">12/2023 – presente</p>
+                            </div>
+                        </div>
+                        <ul class="vinetas">
+                            <li>Lideré la estrategia regional de cross-selling (Turbo + verticales) con segmentación, A/B testing y optimización de funnels, gestionando budgets en USD y maximizando órdenes incrementales y retención.</li>
+                            <li>Ejecuté el piloto Turbo x Chedraui, escalando de 8K a 11K órdenes semanales (+37%), validando unit economics y soportando la expansión comercial (budget de USD 30K).</li>
+                            <li>Operé esquemas Pay-for-Performance (P4P) y modelos de asignación de tráfico hacia aliados retailers, optimizando CAC, ROAS y eficiencia del gasto.</li>
+                            <li>Diseñé estrategias de CRM y lifecycle para marcas globales con segmentación, triggers y personalización, incrementando engagement, frecuencia y LTV.</li>
+                        </ul>
+                    </article>
+
+                    <article class="card-content experiencia">
+                        <div class="experiencia-cabecera">
+                            <div>
+                                <h3 class="tarjeta-titulo">Prime &amp; Retention | Prime Personal Assistant Senior y Data CX Analyst</h3>
+                                <p>Rappi</p>
+                                <p class="meta">06/2023 – 12/2023</p>
+                            </div>
+                        </div>
+                        <ul class="vinetas">
+                            <li>Lideré un equipo de hasta 40 asesores de soporte a clientes Pro, gestionando el ciclo integral de casos y su escalamiento.</li>
+                            <li>Estructuré y limpié la data operativa y construí dashboards de métricas clave de atención para facilitar la toma de decisiones.</li>
+                            <li>Diseñé y estandaricé el onboarding de agentes, aumentando la eficiencia en la resolución de casos.</li>
+                            <li>Establecí un way of work colaborativo con microequipos de calibración, mejorando 30% las calificaciones de atención y, con ello, las comisiones del equipo.</li>
+                        </ul>
+                    </article>
+
+                    <article class="card-content experiencia">
+                        <div class="experiencia-cabecera">
+                            <img class="logo-empresa" src="./pics/logo-rappipay.png" alt="Logo de Rappipay">
+                            <div>
+                                <h3 class="tarjeta-titulo">Personal Banker Intermedium</h3>
+                                <p>Rappipay by Rappi</p>
+                                <p class="meta">01/2022 – 06/2023</p>
+                            </div>
+                        </div>
+                        <ul class="vinetas">
+                            <li>Gestioné el portafolio de clientes de alto valor de tarjeta de crédito y débito, liderando un microequipo y participando en proyectos clave de Customer Experience.</li>
+                            <li>Co-lideré el proyecto RappiPay, diseñando el proceso de atención de casos transaccionales y devoluciones, y reduje 50% los reclamos de esta tipología.</li>
+                            <li>Fortalecí el seguimiento de NPS de productos financieros e implementé planes de acción para sostener un NPS &gt; 80 puntos.</li>
+                            <li>Como Micro Team Lead, estandaricé procesos y solución de casos, manteniendo un CSAT &gt; 4,6/5 en el equipo.</li>
+                            <li>Impulsé mejoras en Rewards y onboarding: reduje 30% las malas experiencias por cashbacks no cargados y acorté la curva de aprendizaje de nuevos agentes de 4 a 2 semanas.</li>
+                        </ul>
+                    </article>
+
+                    <!-- Entradas anteriores en formato compacto (una línea de resumen) -->
+                    <article class="card-content experiencia experiencia-compacta">
+                        <div class="experiencia-cabecera">
+                            <img class="logo-empresa" src="./pics/logo-rappipay.png" alt="Logo de Rappipay">
+                            <div>
+                                <h3 class="tarjeta-titulo">Personal Banker Jr</h3>
+                                <p>Rappipay by Rappi</p>
+                                <p class="meta">09/2021 – 12/2021</p>
+                            </div>
+                        </div>
+                        <p>Gestión y asesoría de portafolio de clientes de tarjeta de crédito y débito, manejo integral de casos y escalamiento.</p>
+                    </article>
+
+                    <article class="card-content experiencia experiencia-compacta">
+                        <div class="experiencia-cabecera">
+                            <img class="logo-empresa" src="./pics/logo-marsol.png" alt="Logo de Transportes Marsol">
+                            <div>
+                                <h3 class="tarjeta-titulo">Asistente Operativo (Prácticas Profesionales)</h3>
+                                <p>Transportes Marsol S.A.S</p>
+                                <p class="meta">08/2019 – 02/2021</p>
+                            </div>
+                        </div>
+                        <p>Control y mantenimiento de estadísticas e indicadores de operación; seguimiento y reporte diario del control de pasajeros y vehículos; cálculo de indicadores mensuales.</p>
+                    </article>
+
+                    <article class="card-content experiencia experiencia-compacta">
+                        <div class="experiencia-cabecera">
+                            <div>
+                                <h3 class="tarjeta-titulo">Tutor de matemáticas</h3>
+                                <p>Universidad del Norte</p>
+                                <p class="meta">01/2018 – 05/2019</p>
+                            </div>
+                        </div>
+                        <p>Tutorías y acompañamiento académico en Cálculo III; acompañamiento exitoso a 17 estudiantes que aprobaron la asignatura.</p>
+                    </article>
+                </div>
             </section>
 
-            <section id="referencias"> <!--Section de testimonial-->
-
+            <section id="referencias"> <!--Section de referencias-->
+                <p class="eyebrow">Referencias</p>
+                <h2>Referencias</h2>
+                <p class="referencias-texto">Referencias laborales y académicas disponibles bajo solicitud.</p>
+                <!-- TODO: si consigues un testimonio real (con permiso de la persona), agrégalo aquí como tarjeta card-content con <blockquote>. No inventar. -->
+                <div>
+                    <a class="boton boton-primario" href="https://www.linkedin.com/in/felipe-juan-ortega-de-la-cruz-982352184/" target="_blank" rel="noopener noreferrer">Contactar por LinkedIn</a>
+                </div>
             </section>
 
         </main>
         <footer>
+            <div class="footer-interior">
+                <p>Felipe Ortega</p>
+                <p>© 2026 Felipe Ortega</p>
+                <ul class="footer-enlaces">
+                    <li><a href="https://github.com/PipeJuan" aria-label="GitHub de Felipe" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/felipe-juan-ortega-de-la-cruz-982352184/" aria-label="LinkedIn de Felipe" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                </ul>
+            </div>
         </footer>
     </body>
 </html>

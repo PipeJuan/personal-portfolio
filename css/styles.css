@@ -1,237 +1,672 @@
-*{
+/* ==========================================================================
+   Tokens de diseño (inspirados en la guía DESIGN-x.ai: canvas oscuro, hairlines,
+   tipografía peso 400, botones en píldora). Un solo tema: oscuro.
+   ========================================================================== */
+:root {
+    /* Colores */
+    --color-canvas: #0a0a0a;
+    --color-tarjeta: #191919;
+    --color-superficie: #1a1c20;
+    --color-hairline: #212327;
+    --color-tinta: #ffffff;
+    --color-texto: #dadbdf;
+    --color-texto-suave: #7d8187;
+    --color-borde-boton: rgba(255, 255, 255, 0.25);
+    --color-acento: #ff7a17; /* Solo para hover y foco: usar con moderación */
+    --color-relleno-sutil: rgba(255, 255, 255, 0.1); /* Estado activo del nav */
+
+    /* Tipografías */
+    --fuente-base: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --fuente-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+    /* Tamaños (los display escalan con clamp: mínimo, fluido, máximo) */
+    --texto-display-xl: clamp(3rem, 1.5rem + 5vw, 6rem);      /* 48px -> 96px */
+    --texto-display-md: clamp(2rem, 1.25rem + 2.5vw, 3rem);   /* 32px -> 48px */
+    --texto-display-sm: clamp(1.25rem, 1rem + 1vw, 2rem);     /* 20px -> 32px */
+    --texto-lg: 1.125rem;  /* 18px */
+    --texto-md: 1rem;      /* 16px */
+    --texto-sm: 0.875rem;  /* 14px */
+
+    /* Espaciado (base 4px) */
+    --espacio-xs: 4px;
+    --espacio-sm: 8px;
+    --espacio-md: 12px;
+    --espacio-lg: 16px;
+    --espacio-xl: 24px;
+    --espacio-2xl: 32px;
+    --espacio-3xl: 48px;
+    --espacio-4xl: 64px;
+
+    /* Formas y layout */
+    --radio-sm: 8px;
+    --radio-pildora: 9999px;
+    --borde-hairline: 1px solid var(--color-hairline);
+    --ancho-contenido: 1200px;
+    --alto-minimo-tactil: 44px;
+    /* Padding lateral: 24px como mínimo; en pantallas anchas centra el contenido a 1200px */
+    --margen-lateral: max(var(--espacio-xl), calc((100% - var(--ancho-contenido)) / 2));
+}
+
+/* ==========================================================================
+   Reset mínimo y base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* width/height incluyen padding y borde */
+}
+
+/* Reset de margin/padding solo en los elementos que traen márgenes por defecto
+   y que controlamos nosotros (en vez de un * que lo pisa todo) */
+body,
+h1, h2, h3, p, ul, figure {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-html{
-    scroll-behavior: smooth;
+html {
+    scroll-padding-top: 80px; /* El nav sticky no tapa el título al saltar a un ancla */
 }
 
-/*body{
-
-}*/
-
-header{
-    width: 100%;
-    height: 90px;  /* Podemos cambiar el alto luego*/
-    background-color: #ffffff;
+/* El scroll suave solo para quien no pidió reducir el movimiento (accesibilidad) */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
-main{
-    height: 588px;
+body {
+    background-color: var(--color-canvas);
+    color: var(--color-texto);
+    font-family: var(--fuente-base);
+    font-size: var(--texto-md);
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-.interior{
-    max-width: 100%;
-    padding: 0 10px;
-    margin: auto;
+h1, h2, h3 {
+    color: var(--color-tinta);
+    font-weight: 400; /* La guía nunca usa negrita */
 }
 
-.logo{  /* Logo de texto */
-    float: left;
-    line-height: 90px; /* Igual al alto del header: centra el texto en vertical */
+a {
     color: inherit;
     text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-    transition: .3s linear;
 }
 
-.logo:hover{
-    transform: scale(1.1);
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
-.navegacion{  /*Estilizar el nav bar*/
-    float: right;
-    display: flex;
-    align-items: center;
-    min-height: 90px;
-    z-index: 1000;   
+/* Foco visible con teclado (Tab): anillo claro sobre fondo oscuro */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-tinta);
+    outline-offset: 3px;
+    border-radius: var(--radio-sm);
 }
 
-.navegacion ul{ /*Estilizar el undordered list dentro del nav bar*/
-    list-style: none;
-    padding: 0 10px;
-}
-
-.navegacion ul li{ /*Estilizar los item dentro de undorered del nav bar*/
-    display: inline-block;
-    position: relative;
-    transition: .3s linear;
+/* ==========================================================================
+   Cabecera y navegación (nav-bar sticky)
+   ========================================================================== */
+header {
+    position: sticky;
+    top: 0;
     z-index: 1000;
+    background-color: var(--color-canvas);
+    border-bottom: var(--borde-hairline);
 }
 
-.navegacion-color{
-    color: black;
-}
-
-.navegacion ul li a{
-    display: inline-block; /* Así el padding sí cuenta como área clicable */
-    color: inherit; /* Hereda el color del li (.navegacion-color) en vez del azul por defecto */
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 12px 20px;
-    transition: .3s linear;
-}
-
-.navegacion ul li a:hover{
-    color: #8873ef;
-    transform: scale(1.1);
-}
-
-.navegacion ul li a:focus-visible{ /* Foco con teclado (Tab) */
-    outline: 3px solid #8873ef;
-    outline-offset: 2px;
-    border-radius: 4px;
-}
-
-
-/*Confugración de grillas*/
-
-.contenedor{
-    background-color: #ffffff;
-    border: 0px solid #ffffff;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /*Cuantas columnas va tener y el ancho las grillas*/ 
-    grid-template-rows:  auto; /*Cambia el ancho de la fila*/
-    grid-auto-flow: column; /* nos ayuda a saber como se esta llenando nuestra grilla*/
-    column-gap: 0; /*Tamaño de la brecha que queremos tener puede ser colum gap o rowgap*/
-    height: 622px; /* Alto de la grilla padre*/
-}
-
-.item{ /*Elemento dentro de la grilllas*/
-    border: 0px solid #8873ef;
-    font-size: 4rem;
-}
-
-.item h1{
-    margin-left: 19px;
-    margin-top: 110px;
-}
-
-.item h6{
-    margin-left: 20px;
-    margin-top: 15px;
-    font-size: 36px;
-}
-
-.item p{
-    margin-left: 20px;
-    margin-top: 15px;
-    font-size: 20px;
-}
-
-.button-style{
-    display: inline-block;
-    border: 0px;
-    border-radius: 8px;
-    vertical-align: middle;
-    background-color: #8873ef;
-    color: #ffffff;
-    font-size: 16px;
-    text-align: center;
-    margin-left: 20px;
-    height: 40px;
-    width: 150px;
-    line-height: 40px; /* Un <a> no centra el texto en vertical como un <button>: lo igualamos al alto */
-    text-decoration: none; /* Quita el subrayado de enlace */
-    cursor: pointer; /* Mano al pasar el mouse */
-}
-
-.Social{
+.cabecera-interior {
     display: flex;
-    justify-content: left;
+    flex-wrap: wrap; /* En móvil el logo y el menú pueden apilarse */
     align-items: center;
-    
+    justify-content: space-between;
+    gap: var(--espacio-sm) var(--espacio-xl);
+    padding: var(--espacio-md) var(--margen-lateral);
 }
 
-.Social figure{
-    width: 50px;
-    height: 50px;
+.logo {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--alto-minimo-tactil);
+    color: var(--color-tinta);
+    font-size: var(--texto-lg);
+    letter-spacing: -0.02em;
 }
 
-.Social figure img{
-    width: 38px;
-    height: 38px;
-    justify-items: center;
-    margin-left: 20px;
-    margin-bottom: 20px;
+/* Botón hamburguesa: oculto por defecto (escritorio y sin JS). Se activa en la media query móvil bajo .js */
+.menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--alto-minimo-tactil);
+    min-height: var(--alto-minimo-tactil);
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid var(--color-borde-boton);
+    border-radius: var(--radio-pildora);
+    color: var(--color-tinta);
+    cursor: pointer;
 }
 
-/*.item button img{
-    height: 15px;
-    width: 15px;
-    margin-left: 15px;
-} */ /*Se supone que este es el estilo de la imagen del boton pero aun no doy con el chiste*/
-
-.item img{
-    margin-left: 80px;
-    height: 600px;
-    width: 600px;
+.menu-toggle:hover {
+    border-color: var(--color-acento);
 }
 
-.contenedor-2{
-    background-color: #EAEBFF;
-    border: 0px solid #8873ef;
+/* Dos íconos en el mismo SVG; el atributo aria-expanded (estado accesible) decide cuál se ve */
+.menu-toggle .icono-cerrar,
+.menu-toggle[aria-expanded="true"] .icono-abrir {
+    display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .icono-cerrar {
+    display: inline;
+}
+
+.navegacion ul {
     display: flex;
     flex-wrap: wrap;
-    height: 700px; /* Alto de la grilla padre*/
+    gap: var(--espacio-xs);
+    list-style: none;
 }
 
-.item-aboutme{
-    width: 512px;
-    margin-left: 20px;
-
-}
-
-.item-aboutme h1{
-    font-size: 36px;
-    margin-top: 100px;
-}
-
-.item-aboutme-2{
-    width: 512px;
-    margin-left: 200px;
-    margin-top: 110px;
-    align-self: center;
-    justify-items: center;
-}
-
-.item-aboutme-2 p{
-    font-size: 20px;
-    margin-bottom: 50px;
-    align-self: left;
-}
-
-.item-aboutme-2 h2{
-    font-size: 32px;
-    margin-top: 25px;
-    margin-left: 150px;
-}
-
-.interest{
-    display: flex;
-    justify-content: left;
+.navegacion a {
+    display: inline-flex; /* El padding cuenta como área clicable */
     align-items: center;
-
+    min-height: var(--alto-minimo-tactil);
+    padding: 0 var(--espacio-lg);
+    border-radius: var(--radio-pildora);
+    color: var(--color-tinta);
+    font-family: var(--fuente-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.interest figure{
-    width: 50px;
-    height: 50px;
-    margin-right: 40px;
+/* Sección visible (la marca el IntersectionObserver de main.js): píldora blanca sutil, sin naranja */
+.navegacion a.activo {
+    background-color: var(--color-relleno-sutil);
 }
 
-.interest figure img{
-    width: 45px;
-    height: 45px;
-    justify-items: center;
-    margin-left: 90px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+/* Va después de .activo para que el hover (naranja) gane si coinciden */
+.navegacion a:hover {
+    background-color: var(--color-superficie);
+    color: var(--color-acento);
+}
+
+/* ==========================================================================
+   Secciones: ancho centrado a ~1200px con padding lateral
+   ========================================================================== */
+main > section {
+    padding: var(--espacio-3xl) var(--margen-lateral);
+    border-bottom: var(--borde-hairline);
+}
+
+h2 {
+    font-size: var(--texto-display-md);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+h3 {
+    font-size: var(--texto-lg);
+    line-height: 1.3;
+}
+
+/* Eyebrow reutilizable: etiqueta mono en mayúsculas (se usa en h3 o p) */
+.eyebrow {
+    font-family: var(--fuente-mono);
+    font-size: var(--texto-sm);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+}
+
+/* ==========================================================================
+   Botones (píldora)
+   ========================================================================== */
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--alto-minimo-tactil);
+    padding: var(--espacio-sm) var(--espacio-xl);
+    border: 1px solid var(--color-borde-boton);
+    border-radius: var(--radio-pildora);
+    font-size: var(--texto-sm);
+    cursor: pointer;
+}
+
+/* CTA principal: píldora rellena blanca */
+.boton-primario {
+    background-color: var(--color-tinta);
+    border-color: var(--color-tinta);
+    color: var(--color-canvas);
+}
+
+.boton-primario:hover {
+    background-color: var(--color-canvas);
+    border-color: var(--color-acento);
+    color: var(--color-tinta);
+}
+
+/* ==========================================================================
+   Hero (#inicio)
+   ========================================================================== */
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: var(--espacio-3xl);
+    min-height: min(70vh, 640px);
+}
+
+.hero-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--espacio-lg);
+}
+
+.hero-texto h1 {
+    font-size: var(--texto-display-xl);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--color-tinta);
+    font-weight: 400;
+}
+
+.hero-texto .subtitulo {
+    color: var(--color-tinta);
+    font-size: var(--texto-display-sm);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 400; /* Antes bold: la guía no usa negrita */
+}
+
+.hero-texto p {
+    max-width: 60ch;
+    font-size: var(--texto-lg);
+}
+
+.hero-texto .subtitulo + p {
+    color: var(--color-texto);
+}
+
+.redes-sociales {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-md);
+}
+
+/* Los íconos son oscuros: van sobre un círculo claro para verse en el canvas oscuro */
+.redes-sociales a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--alto-minimo-tactil);
+    height: var(--alto-minimo-tactil);
+    border-radius: var(--radio-pildora);
+    background-color: var(--color-tinta);
+    border: 1px solid transparent;
+}
+
+.redes-sociales a:hover {
+    border-color: var(--color-acento);
+}
+
+.redes-sociales img {
+    width: 24px;
+    height: 24px;
+}
+
+.hero-imagen figure {
+    max-width: 480px;
+    margin-inline: auto;
+}
+
+.hero-imagen img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: var(--borde-hairline);
+    border-radius: var(--radio-sm);
+}
+
+/* ==========================================================================
+   Sobre mí
+   ========================================================================== */
+.sobre-mi {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: var(--espacio-3xl);
+}
+
+.sobre-mi-titulo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xl);
+}
+
+.sobre-mi-titulo img {
+    width: 100%;
+    max-width: 360px;
+    border: var(--borde-hairline);
+    border-radius: var(--radio-sm);
+    background-color: var(--color-tarjeta);
+    padding: var(--espacio-xl);
+}
+
+.sobre-mi-texto {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xl);
+}
+
+.sobre-mi-texto p {
+    font-size: var(--texto-lg);
+    max-width: 60ch;
+}
+
+.intereses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+    gap: var(--espacio-lg);
+}
+
+/* Tarjeta de interés: canvas-card + hairline + radio 8px, sin sombra */
+.intereses figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    padding: var(--espacio-lg);
+    background-color: var(--color-tarjeta);
+    border: var(--borde-hairline);
+    border-radius: var(--radio-sm);
+}
+
+.intereses img {
+    width: 100%;
+    max-width: 40px;
+    filter: invert(1); /* Los PNG son negros: se invierten a blanco sobre el canvas oscuro */
+}
+
+/* ==========================================================================
+   Componentes reutilizables: tarjeta, píldora, metadatos
+   ========================================================================== */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
+    min-width: 0;
+    padding: var(--espacio-xl);
+    background-color: var(--color-tarjeta);
+    border: var(--borde-hairline);
+    border-radius: var(--radio-sm);
+}
+
+.tarjeta-titulo {
+    margin: 0;
+    color: var(--color-tinta);
+    font-size: var(--texto-lg);
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+/* Fechas y periodos */
+.meta {
+    font-family: var(--fuente-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--color-texto-suave);
+}
+
+.pildoras {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-sm);
+    list-style: none;
+}
+
+.pildora {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: var(--espacio-xs) var(--espacio-lg);
+    border: 1px solid var(--color-borde-boton);
+    border-radius: var(--radio-pildora);
+    color: var(--color-tinta);
+    font-size: var(--texto-sm);
+}
+
+.pildoras-sm .pildora {
+    min-height: 28px;
+    padding: 2px var(--espacio-md);
+    font-size: 0.75rem;
+    color: var(--color-texto);
+    border-color: var(--color-hairline);
+}
+
+/* ==========================================================================
+   Educación y habilidades (#skills)
+   ========================================================================== */
+#skills {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-2xl);
+}
+
+.bloque {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-lg);
+}
+
+/* Rejilla auto-fit: tantas columnas de >=280px como quepan; en móvil colapsa sola a 1 */
+.rejilla-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--espacio-lg);
+}
+
+.lista-compacta {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.lista-compacta li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--espacio-lg);
+    padding: var(--espacio-sm) 0;
+    border-bottom: var(--borde-hairline);
+}
+
+.lista-compacta li:last-child {
+    border-bottom: 0;
+}
+
+.lista-compacta .meta {
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Experiencia (#experiencia)
+   ========================================================================== */
+#experiencia,
+#referencias {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--espacio-lg);
+}
+
+.lista-tarjetas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-lg);
+    width: 100%;
+    margin-top: var(--espacio-lg);
+}
+
+.experiencia-cabecera {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-lg);
+}
+
+.logo-empresa {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    padding: var(--espacio-xs);
+    object-fit: contain;
+    background-color: var(--color-tinta); /* Fondo claro por si el logo no está pensado para oscuro */
+    border-radius: var(--radio-sm);
+}
+
+.vinetas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-sm);
+    padding-left: var(--espacio-xl);
+}
+
+.experiencia-compacta {
+    gap: var(--espacio-sm);
+}
+
+.experiencia-compacta .tarjeta-titulo {
+    font-size: var(--texto-md);
+}
+
+/* ==========================================================================
+   Referencias y footer
+   ========================================================================== */
+.referencias-texto {
+    font-size: var(--texto-lg);
+    max-width: 60ch;
+}
+
+footer {
+    background-color: var(--color-canvas);
+    border-top: var(--borde-hairline);
+    color: var(--color-texto);
+    font-size: var(--texto-sm);
+    padding: var(--espacio-3xl) var(--margen-lateral) var(--espacio-xl);
+}
+
+.footer-interior {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacio-lg) var(--espacio-xl);
+}
+
+.footer-enlaces {
+    display: flex;
+    gap: var(--espacio-xs);
+    list-style: none;
+}
+
+.footer-enlaces a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--alto-minimo-tactil);
+    padding: 0 var(--espacio-lg);
+    border-radius: var(--radio-pildora);
+    color: var(--color-texto);
+}
+
+.footer-enlaces a:hover {
+    background-color: var(--color-superficie);
+    color: var(--color-acento);
+}
+
+/* ==========================================================================
+   Móvil (< 768px): desktop-first con un solo breakpoint, tal como pide la guía
+   ========================================================================== */
+@media (max-width: 767px) {
+    .hero-grid,
+    .sobre-mi {
+        grid-template-columns: 1fr;
+        gap: var(--espacio-2xl);
+    }
+
+    .hero-grid {
+        min-height: 0;
+    }
+
+    main > section {
+        padding-block: var(--espacio-4xl) var(--espacio-3xl);
+    }
+
+    .hero-imagen figure {
+        max-width: 320px;
+    }
+
+    .cabecera-interior {
+        justify-content: center; /* Logo y menú apilados y centrados */
+    }
+
+    .navegacion ul {
+        justify-content: center;
+    }
+
+    /* Menú hamburguesa: solo con JS (.js) y solo en móvil. Sin JS, el menú sigue visible y usable. */
+    .js .cabecera-interior {
+        justify-content: space-between; /* Logo a la izquierda, botón a la derecha */
+    }
+
+    .js .menu-toggle {
+        display: inline-flex;
+    }
+
+    /* Colapsado: display:none también lo saca del árbol de accesibilidad y del orden de Tab,
+       coherente con aria-expanded="false" */
+    .js .navegacion {
+        display: none;
+        flex-basis: 100%; /* Ocupa su propia fila debajo del logo y el botón */
+    }
+
+    .js .menu-abierto .navegacion {
+        display: block;
+    }
+
+    .js .navegacion ul {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .js .navegacion a {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   Transiciones: solo si el usuario no pidió reducir el movimiento
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+    .navegacion a,
+    .footer-enlaces a {
+        transition: background-color 0.2s linear, color 0.2s linear;
+    }
+
+    .boton {
+        transition: background-color 0.2s linear, color 0.2s linear, border-color 0.2s linear;
+    }
+
+    .redes-sociales a,
+    .menu-toggle {
+        transition: border-color 0.2s linear;
+    }
 }
