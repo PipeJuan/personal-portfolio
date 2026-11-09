@@ -21,3 +21,7 @@ node_modules/
 # Variables de entorno y secretos
 .env
 .env.*
+
+# Fotos originales de celular (pesadas; optimizar antes de agregarlas a pics/)
+*.heic
+*.HEIC

@@ -49,6 +49,8 @@ Origen: onboarding del `frontend-tutor`. Ejecuta: `frontend-coder` (solo cuando 
 
 ## Fase 6 — Calidad, medición y publicación
 
+- [x] **6.0** Limpieza previa (revisión del tutor): `IMG_1511.heic` (1,2 MB, foto de iPhone) sale del repo con `git rm --cached` y `*.heic` entra al `.gitignore`; el archivo sigue en tu disco. Pendiente decidir: 9 PNG sin uso y `pic-profile.png` (favicon/og:image).
+- [ ] **6.0b** Baseline: Lighthouse móvil sobre `http://localhost:8000` (LCP, CLS, peso transferido) antes de tocar imágenes. Lo corre el usuario.
 - [ ] **6.1** Optimizar imágenes (tamaño/formato, `loading="lazy"`, `width`/`height`) para mejorar LCP y CLS. *Aprendes:* Core Web Vitals; medir con Lighthouse (lo corre el usuario en Chrome DevTools).
 - [ ] **6.2** Eventos de analítica en "¡Hablemos!" y LinkedIn (p. ej. GA4 o Plausible). *Aprendes:* instrumentar eventos; encaja con tu perfil de Growth. Hipótesis a medir: ¿qué porcentaje de visitas hace clic en contacto?
 - [ ] **6.3** Publicar en GitHub Pages o Netlify y revisar rutas y mayúsculas en producción.
